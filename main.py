@@ -1,11 +1,11 @@
-import os
-from flask import Flask
+from fastapi import FastAPI
+import json, os
+from pydantic import BaseModel
+from typing import List, Optional, Dict, Any
 
-app = Flask(__name__)
+# Initialize FastAPI app
+app = FastAPI()
 
-@app.route('/')
-def hello():
-    return "Hello, World! The database host is: {}".format(os.environ.get('DB_HOST'))
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+@app.get("/")
+async def test():
+    return {"message": "OK"}
