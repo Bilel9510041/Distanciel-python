@@ -1,0 +1,14 @@
+cat <<EOF > package.json
+{
+  "name": "hello-world",
+  "description": "hello world",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.x"
+  },
+  "scripts": {
+    "start": "node application.js"
+  }
+}
+EOF
