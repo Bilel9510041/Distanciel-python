@@ -1,8 +1,18 @@
-# Use an official FastAPI runtime as a parent image
-FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8-slim
+# Utiliser une image de base Python
+FROM python:3.9
 
-# Copy the current directory contents into the container at /app
-COPY ./app /app
+# Définir le répertoire de travail
+WORKDIR /app
 
-# Expose port 80
-EXPOSE 80
+# Copier le fichier requirements.txt (s'il existe) et installer les dépendances
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copier le fichier main.py
+COPY main.py ./
+
+# Exposer le port sur lequel l'application s'exécute
+EXPOSE 5000
+
+# Commande pour exécuter l'application
+CMD ["python", "main.py"]

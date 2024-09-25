@@ -1,0 +1,20 @@
+version: '3.8'  # Assurez-vous d'utiliser une version compatible
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: your_db_name
+      POSTGRES_USER: your_username
+      POSTGRES_PASSWORD: your_password
+
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+volumes:
+  postgresql_data:
